@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -138,13 +138,17 @@ namespace FinalProj
         }
 
 
-        public void notify(PromotionalOffer oif )
+         public async void notify(PromotionalOffer oif )
         {
             //if customer has registered, then pull up the promo form and have it display every x seconds 
-            //PromotionalOffer promo = new PromotionalOffer(); 
+            
                 PromotionForm promoform = new PromotionForm(oif);
+                //display the promo form 
                 promoform.Show();
-
+                //leave the promoform on screen for 3 secs (pop up for 3s)
+                await Task.Delay(3000);
+                //close the promoform pop up after 3 s 
+                promoform.Close();
             
             
             
