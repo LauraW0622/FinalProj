@@ -17,23 +17,30 @@ namespace FinalProj
         public List<string> promos = new List<string>();
         private static System.Timers.Timer aTimer = new System.Timers.Timer(2000);
         
-        public PromotionalOffer()
+       public PromotionalOffer()
         {
             promos.Add("30% off your next order! Use code: 3zeroOFF");
             promos.Add("Enjoy a free sandwich with the purchase of a sandwich. Use code: FREEYUM");
             promos.Add("10% off on Mother's Day! Use code: MomIsCool");
-            aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
+            /*aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
             aTimer.AutoReset = true;
-            aTimer.Enabled = true;
+            aTimer.Enabled = true;*/
+            t.Interval = 10000;
+            t.Tick += new EventHandler(timer_Tick);
+            t.Start();
 
         }
-        private  void OnTimedEvent(Object source, ElapsedEventArgs e)
+       private void timer_Tick(object sender, EventArgs e)
+        {
+            showPromo();
+        }
+     /*   private  void OnTimedEvent(Object source, ElapsedEventArgs e)
         {
             Debug.WriteLine("The Elapsed event was raised at {0:HH:mm:ss.fff}",
                               e.SignalTime);
             showPromo();
             
-        }
+        }*/
 
         //if customer no longer wishes to receive promo offers, deregister and remove from the list 
         public void deregister(ObserverIF o)
@@ -62,7 +69,7 @@ namespace FinalProj
                 Debug.WriteLine("Notifying customer \n");
                 o.notify(this);
             }
-            aTimer.Dispose();
+            
 
         }
     }
