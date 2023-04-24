@@ -15,7 +15,8 @@ namespace FinalProj
         private List<ObserverIF> observerList = new List<ObserverIF>(); //list of customers who have registered 
        
         public List<string> promos = new List<string>();
-        private static System.Timers.Timer aTimer = new System.Timers.Timer(2000);
+        //private static System.Timers.Timer aTimer = new System.Timers.Timer(2000);
+         System.Windows.Forms.Timer t = new System.Windows.Forms.Timer();
         
        public PromotionalOffer()
         {
